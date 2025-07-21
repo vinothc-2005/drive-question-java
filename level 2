@@ -132,3 +132,27 @@ public class LongestPalindromeSubstring {
     }
 }
 *******************************************
+Remove the Duplicate String :
+
+import java.util.LinkedHashSet;
+import java.util.Scanner;
+
+public class RemoveDuplicateString {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        System.out.print(removeduplicate(str).toUpperCase());
+    }
+    public static String removeduplicate(String str){
+        LinkedHashSet<Character> set = new LinkedHashSet<>();
+        for(char c : str.toCharArray()){
+            set.add(c);
+        }
+        StringBuilder s = new StringBuilder();
+        for(char c : set){
+            s.append(c);
+        }
+        return s.toString();
+    }
+}
+***************************************
