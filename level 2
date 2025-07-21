@@ -1,0 +1,134 @@
+From the given set of numbers, form a linked list and delete those nodes that have a greater value on their right side.
+Note: The final linked list should be formed in the reverse order of the given input integers.
+Example
+Input:
+5
+3 2 6 5 11
+Output:
+Given Linked List 
+11 5 6 2 3 
+Modified Linked List 
+11 6 3 
+Explanation:
+The given linked list is reversed, and nodes that have a greater value on their right side are deleted, i.e., 5 is deleted because 6 is greater than 5, which is present on the right side of 5. The same is repeated for 2.
+Input format :
+The first line of input consists of the size of the linked list.
+The second line of input consists of the list of elements, separated by space.
+Output format :
+The first line of output prints "Given Linked List", followed by the elements, separated by space.
+
+The second line of output prints "Modified Linked List", followed by the elements present after the deletion, separated by space.
+
+Sample test cases :
+Input 1 :
+5
+3 2 6 5 11
+Output 1 :
+Given Linked List 
+11 5 6 2 3 
+Modified Linked List 
+11 6 3 
+Input 2 :
+7
+14 2 5 3 1 9 2
+Output 2 :
+Given Linked List 
+2 9 1 3 5 2 14 
+Modified Linked List 
+14 
+Answer :
+import java.util.*;
+public class Linkedlist{
+        static class Node {
+        int data;
+        Node next;
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    // Function to print the linked list
+    static void printList(Node head) {
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " ");
+            curr = curr.next;
+        }
+        System.out.println();
+    }
+
+    // Function to delete nodes with a greater value on their right
+    static Node deleteNodes(Node head) {
+        if (head == null) return null;
+        Node curr = head;
+        int max = curr.data;
+        Node newHead = new Node(curr.data);
+        Node newCurr = newHead;
+        curr = curr.next;
+        while (curr != null) {
+            if (curr.data >= max) {
+                newCurr.next = new Node(curr.data);
+                newCurr = newCurr.next;
+                max = curr.data;
+            }
+            curr = curr.next;
+        }
+        return newHead;
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scan.nextInt();
+        }
+        // Build reversed linked list
+        Node head = null;
+        for (int i = 0; i < n; i++) {
+            Node node = new Node(arr[i]);
+            node.next = head;
+            head = node;
+        }
+        System.out.println("Given Linked List");
+        printList(head);
+        // Delete nodes with greater value on right
+        Node modified = deleteNodes(head);
+        System.out.println("Modified Linked List");
+        printList(modified);
+    }
+}
+*******************************************
+Largest Palindrome SubString :
+
+import java.util.Scanner;
+public class LongestPalindromeSubstring {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+        System.out.println(longestPalindrome(s));
+    }
+    public static String longestPalindrome(String s) {
+        if (s == null || s.length() < 1) return "";
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expandFromCenter(s, i, i);
+            int len2 = expandFromCenter(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        return s.substring(start, end + 1);
+    }
+    private static int expandFromCenter(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    }
+}
+*******************************************
