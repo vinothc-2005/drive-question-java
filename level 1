@@ -1,0 +1,267 @@
+Anagram :
+import java.util.Arrays;
+import java.util.Scanner;
+public class Anagram {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        String str1 = scan.nextLine();
+        String str2 = scan.nextLine();;
+        char[] array1 = str1.toCharArray();
+        char[] array2 = str2.toCharArray();
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+            if(Arrays.equals(array1, array2)){
+                System.out.print("true");
+            }
+            else{
+                System.out.print("false");
+        }
+    }
+}
+//another method
+/*public static boolean isAnagram(String str1, String str2){
+        int freq[] = new int[26];
+        for(char ch : str1.toCharArray()){
+            freq[ch-'a']++;
+        }
+        for(char ch :str2.toCharArray()){
+            freq[ch-'a']--;
+        }
+        for(int n : freq){
+            if(n != 0){
+                return false;
+            }
+        }
+        return true;
+    }
+}*/
+~~~~~~~~~~~~~~~~~~~~~
+2D array :
+import java.util.*;
+public class array2D {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int m = scan.nextInt();
+        int[][] arr = new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                arr[i][j] = scan.nextInt();
+            }
+        }for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+        System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+}
+~~~~~~~~~~~~~~~~~~~
+Binary search :
+
+import java.util.*;
+public class Binarysearch {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int size = scan.nextInt();
+        int [] arr = new int[size];
+        for(int i=0;i<size;i++){
+            arr[i] = scan.nextInt();
+        }
+        Arrays.sort(arr);
+        int key = scan.nextInt();
+        boolean found = false;
+        int start = 0, end = size-1;
+        while(start <= end){
+            int mid = (start + end)/2;
+            if (arr[mid] == key) {
+                found = true;
+                break;
+            }
+            else if(arr[mid] < key){
+                start = start+1;
+            }
+            else{
+                end = end - 1;
+            }
+        }
+        System.out.print(found);
+    }
+}
+~~~~~~~~~~~~~~~~
+  Binary string :
+import java.util.*;
+public class BinaryString {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        // Find the number of bits in the binary representation
+        int numBits = Integer.toBinaryString(n).length();
+        // Create a mask with all bits set to 1 for that length
+        int mask = (1 << numBits) - 1;
+        // Toggle bits using XOR with mask
+        int result = n ^ mask;
+        System.out.println(result);
+    }
+}
+~~~~~~~~~~~~~~~
+Boxpattern :
+
+import java.util.*;
+public class Boxpattern{
+    public static void main(String [] args){
+        Scanner scan = new Scanner(System.in);
+        int num = scan.nextInt();
+        for(int row=1;row<=num;row++){
+            for(int col=1;col<=num;col++){
+                if(row==1 || col==1 || row==num || col==num)
+                    System.out.print(col);
+                else
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+}
+~~~~~~~~~~~~~~
+Calculate the factorial :
+
+import java.util.*;
+public class Calculatefactorial {
+    // Function to calculate factorial
+    public static int factorial(int num) {
+        int fact = 1;
+        for(int i = 2; i <= num; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        if(N < 2 || N >= 10) {
+            System.out.println("Invalid input");
+            return;
+        }
+        int result = 2 * factorial(N - 1);
+        System.out.println(result);
+    }
+}
+~~~~~~~~~~~~~~
+Character triangle pattern :
+
+import java.util.*;
+public class charactertriangle {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        String str = scan.next();
+        for(int row=0;row<str.length();row++){
+            for(int col=0;col<=row;col++){
+                System.out.print(str.charAt(col));
+            }
+            System.out.println();
+        }
+    }
+}
+~~~~~~~~~~~~~~~~
+Check valid password or Not :
+
+import java.util.*;
+public class Checkvalidpassword {
+    public static void main(String[] atgs){
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        if(isValidpassword(str)){
+            System.out.print(str+" is a valid password");
+        }
+        else{
+            System.out.print(str+" is an inValid password");
+        }
+    }
+    public static boolean isValidpassword(String str){
+        String res = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\s+$).{8,20}$";
+        return str.matches(res);
+    }
+    // Another method to check password validity without regex
+    public static boolean isValidPasswordSimple(String str) {
+        if (str.length() < 8 || str.length() > 20) return false;
+        boolean hasDigit = false, hasLower = false, hasUpper = false, hasSpecial = false, hasWhitespace = false;
+        String specialChars = "@#$%^&+=!";
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) hasDigit = true;
+            else if (Character.isLowerCase(c)) hasLower = true;
+            else if (Character.isUpperCase(c)) hasUpper = true;
+            else if (specialChars.indexOf(c) >= 0) hasSpecial = true;
+            else if (Character.isWhitespace(c)) hasWhitespace = true;
+        }
+        return hasDigit && hasLower && hasUpper && hasSpecial && !hasWhitespace;
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~
+count the integer :
+
+import java.util.*;
+public class countinteger {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        System.out.print((" "+n+" ").length());
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~
+Delete the duplicate in an array : 
+
+import java.util.Arrays;
+import java.util.Scanner;
+public class Deleteduplicate {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int[] num = new int[n];
+        for(int i = 0; i < n; i++){
+            num[i] = scan.nextInt();
+        }
+        int result = removeDuplicates(num);
+        for(int i = 0; i < result; i++){
+            System.out.print(num[i] + " ");
+        }
+    }
+    public static int removeDuplicates(int[] num){
+        Arrays.sort(num); // Make sure duplicates are adjacent
+        int len = num.length;
+        if(len == 0){
+            return 0;
+        }
+        int j = 0;
+        for(int i = 1; i < len; i++){
+            if(num[i] != num[j]){
+                j++;
+                num[j] = num[i];
+            }
+        }
+        return j + 1; // return the new length after loop completes
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~
+DOwn triangle pattern :
+
+import java.util.*;
+public class Downtriangle {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        for(int i=n;i>=1;i--){
+            for(int j=1;j<=i;j++){
+                System.out.print(j);
+            }
+            for(int k=1;k<=2*(n-i);k++){
+                System.out.print(" ");
+            }
+            for(int j=i;j>=1;j++){
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~
