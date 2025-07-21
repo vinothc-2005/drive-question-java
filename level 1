@@ -598,3 +598,369 @@ public class linearsearch {
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Majorty Element :
+
+import java.util.*;
+public class MajorityElement {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int size = scan.nextInt();
+        int [] arr = new int[size];
+        for(int i=0;i<size;i++){
+            arr[i] = scan.nextInt();
+        }
+        int count =1;
+        int result = arr[0];
+        for(int i=1;i<size;i++){
+            if(arr[i] == result){
+                count++;
+            }
+            else{
+                count--;
+            }
+            if(count ==0){
+                result=arr[i];
+                count =1;
+            }
+        }
+        count = 0;
+        for(int i : arr){
+            if(i == result){
+                count++;
+            }
+        }
+            if(count>size/2){
+                System.out.println("The majority element is :"+result);
+            }
+            else{
+                System.out.println("The majority element is not found");
+        }
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Make Arrays is Empty : 
+
+import java.util.Scanner;
+public class MakeArrayEmpty {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read number of elements
+        int n = scanner.nextInt();
+        int[] nums = new int[n];
+
+        // Read array
+        for (int i = 0; i < n; i++) {
+            nums[i] = scanner.nextInt();
+        }
+
+        int operations = 0;
+        int size = n;
+        int start = 0;
+
+        while (size > 0) {
+            // Find the minimum value in current window
+            int min = Integer.MAX_VALUE;
+            for (int i = 0; i < size; i++) {
+                min = Math.min(min, nums[(start + i) % n]);
+            }
+
+            if (nums[start] == min) {
+                // Remove the front element
+                start = (start + 1) % n;
+                size--;
+            } else {
+                // Rotate: move front to end
+                int temp = nums[start];
+                for (int i = 0; i < size - 1; i++) {
+                    nums[(start + i) % n] = nums[(start + i + 1) % n];
+                }
+                nums[(start + size - 1) % n] = temp;
+                // start remains same
+            }
+            operations++;
+        }
+        System.out.println(operations);
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Matrix Array :
+
+import java.util.*;
+public class MatrixArray{
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int m = scan.nextInt();
+        int[][] arr = new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                arr[i][j] = scan.nextInt();
+            }
+        }
+        for(int i=0;i<n;i++){
+            int max = 0;
+            for(int j=0;j<m;j++){
+                if(arr[i][j]>max){
+                    max = arr[i][j];
+                }
+                
+            }
+        System.out.print(max+" ");
+        }
+
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Max Array :
+
+import java.util.Scanner;
+import java.util.*;
+public class MaxArray {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int size = scan.nextInt();
+        int[] arr = new int[size];
+        for(int i=0;i<size;i++){
+            arr[i] = scan.nextInt();
+        }
+        int max = arr[0];
+        for(int i=0;i<size;i++){
+            if(max < arr[i]){
+                max = arr[i];
+            }
+        }
+        System.out.println(max);
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Maximum difference of the Array :
+
+import java.util.*;
+public class Maximumdiffer {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();  // Input size
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++) {
+            arr[i] = scan.nextInt();  // Input array elements
+        }
+        int minElement = arr[0];
+        int maxDiff = Integer.MIN_VALUE;
+        for(int i = 1; i < n; i++) {
+            if(arr[i] - minElement > maxDiff) {
+                maxDiff = arr[i] - minElement;
+            }
+            if(arr[i] < minElement) {
+                minElement = arr[i];
+            }
+        }
+        System.out.println("Maximum difference = " + maxDiff);
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Maximum profit in the Array :
+
+import java.util.*;
+public class Maxprofit{
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int [] arr = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = scan.nextInt();
+        }
+        int maxprofit = Maxprofit(arr,n);
+        System.out.println(maxprofit);
+    }
+    public static int Maxprofit(int[] arr,int n){
+        int profit =0;
+        for(int i=1;i<n;i++){
+            if(arr[i] > arr[i-1]){
+                profit += arr[i] - arr[i-1];
+            }
+        }
+        return profit;
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Maximum value to Min value :
+
+import java.util.*;
+public class Maxtominvalue {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int size = scan.nextInt();
+        int[] arr = new int[size];
+        for(int i=0;i<size;i++){
+            arr[i] = scan.nextInt();
+        }
+        int d =0;
+        for(int i=0;i<size;i++){
+            if(arr[i]!= 0){
+                    arr[d++] = arr[i];
+                }
+            }
+            for(int j=d;j<size;j++){
+                arr[j] =0;
+            }
+        System.out.println(Arrays.toString(arr));
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Merge Two Array :
+
+import java.util.*;
+public class MergeArray {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int[] arr1 = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr1[i] = scan.nextInt();
+        }
+        int m = scan.nextInt();
+        int[] arr2 = new int[m];
+        for (int j = 0; j < m; j++) {
+            arr2[j] = scan.nextInt();
+        }
+        int[] result = new int[n + m];
+        // Copy arr1 to result
+        for (int i = 0; i < n; i++) {
+            result[i] = arr1[i];
+        }
+        // Copy arr2 to result
+        for (int i = 0; i < m; i++) {
+            result[n + i] = arr2[i];
+        }
+        // Sort the merged array
+        Arrays.sort(result);
+        // Print the sorted array
+        for (int val : result) {
+            System.out.print(val + " ");
+        }
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Mide element in Array :
+
+import java.util.*;
+public class midelement {
+    public static void main(String[] arg){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int arr[] = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = scan.nextInt();
+        }
+        int left = arr[0];
+        int right = arr[n-1];
+        int max = left+right/2;
+        System.out.println(max);
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Minmum of the Array value :
+
+import java.util.*;
+public class MinArray {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int size = scan.nextInt();
+        int[] arr = new int[size];
+        for(int i=0;i<size;i++){
+            arr[i] = scan.nextInt();
+        }
+        Arrays.sort(arr);
+        int min = arr[0];
+        for(int i=0;i<size;i++){
+            if(min > arr[i]){
+                min = arr[i];
+            }
+        }
+        System.out.println(min);
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Palindrome :
+
+import java.util.Scanner;
+public class palindrome {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        String res = "";
+        for(int i=str.length()-1;i>=0;i--){
+            res += str.charAt(i);
+        }
+            if(str.equals(res)){
+                System.out.print(res+" is palindrome");
+            }
+            else{
+                System.out.print(res+" NOt a palindrome");
+            }
+    }
+}
+//another method
+/*String res = "";
+        for(int i=0;i<=str.length();i++){
+            char ch= str.charAt(i);
+            res = ch+res;
+        }
+            if(str.equals(res)){
+                System.out.print(res+" is palindrome");
+            }
+            else{
+                System.out.print(res+" NOt a palindrome");
+            }*/
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Star  pattern :
+
+import java.util.*;
+public class Pattern {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        for(int i=1;i<=(n*2)-1;i++){
+            for(int j=1;j<=(n*2)-1;j++){
+                if(i==j || j==n-i+1){
+                System.out.print("*");
+                }
+            else{
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Remove the Duplicate value in the Array :
+
+import java.util.*;
+public class Removeduplicate {
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int size = scan.nextInt();
+        int[] arr = new int[size];
+        for(int i=0;i<size;i++){
+            arr[i] = scan.nextInt();
+        }
+        boolean flag = false;
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                if(arr[i] == arr[j]){
+                    flag = true;
+                    break;
+                }
+            }
+        if(flag){
+            System.out.print(arr[i]+" ");
+        }
+        else{
+            System.out.print("No duplicate");
+            }
+        }
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
